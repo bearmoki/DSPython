@@ -62,6 +62,7 @@ class LinkedList:
         while temp is not None:
             print(temp.value)
             temp = temp.next
+
     def append(self, value):
         new_node = Node(value)
         if self.head is None:
@@ -73,6 +74,25 @@ class LinkedList:
         self.length +=1
         return True
 
+    def pop(self):
+        # no items - head = none tail = none
+        if self.length == 0:
+            return None
+        temp = self.head
+        pre = self.head
+        while(temp.next):
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return temp.value
+
+
+    
 
     # def prepend(self, value):
     #     # create new node -> add node to beginning
@@ -84,4 +104,14 @@ my_linked_list = LinkedList(1)
 
 my_linked_list.append(2)
 
-my_linked_list.print_list()
+# (2) Items - Return 2 Node
+print(my_linked_list.pop())
+
+# (2) Items - Return 1 Node
+print(my_linked_list.pop())
+
+# (2) Items - Return None
+print(my_linked_list.pop())
+
+
+
